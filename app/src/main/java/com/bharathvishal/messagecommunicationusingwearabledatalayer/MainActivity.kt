@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope(),
     private var wearableNodeUri: String? = null
 
     private lateinit var binding: ActivityMainBinding
+    private var heartRateCount: Int=0
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -274,8 +275,12 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope(),
 
 
 
-                if(s=="hello"){
+                if(heartRateCount>10){
                     startActivity(Intent(this,Chatbot::class.java).putExtra("stage", "refuse"))
+                }
+
+                if(s.toFloat()>40.0){
+                    heartRateCount++
                 }
 
 
